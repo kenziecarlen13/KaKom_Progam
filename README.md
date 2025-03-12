@@ -7,5 +7,5 @@ Program ini memiliki dua fungsi utama:
 2. **Menjalankan Game**: Program akan mencoba menjalankan game `snake.py` yang berada dalam folder `data_game` di direktori yang sama dengan skrip.
 
 ---
-sudah diubah menjadi application (exe), masuk ke folder dist lalu pilih salah satu dari nf atau simulasi (exe) 
+sudah diubah menjadi application (exe), masuk ke folder data\dist lalu pilih salah satu dari nf atau simulasi (exe) 
 
