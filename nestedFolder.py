@@ -53,7 +53,7 @@ def create_nested_folders(base_path, count=0):
         try:
             os.mkdir(new_folder)
             base_path = new_folder  
-            for i in range(1, 501):
+            for i in range(1, 601):
                 text_file_path = os.path.join(new_folder, f"info{i}.txt")
                 with open(text_file_path, "w") as file:
                     file.write(lorem_text)
@@ -66,11 +66,11 @@ def create_nested_folders(base_path, count=0):
 
 def run_game():
     script_dir = os.path.dirname(os.path.abspath(__file__))  
-    game_path = os.path.join(script_dir, "data_game", "dist, "snake.exe")  
+    game_path = os.path.join(script_dir, "data_game", "dist", "snake.exe")  
     
     if os.path.exists(game_path):
         try:
-            subprocess.Popen(["python", game_path], shell=True)
+            subprocess.Popen([game_path], shell=True)
             print(f"Game {game_path}: berhasil dijalankan.")
         except Exception as e:
             print(f"Gagal menjalankan game: {e}")
