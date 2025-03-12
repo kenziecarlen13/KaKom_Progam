@@ -66,7 +66,7 @@ def create_nested_folders(base_path, count=0):
 
 def run_game():
     script_dir = os.path.dirname(os.path.abspath(__file__))  
-    game_path = os.path.join(script_dir, "data_game", "snake.py")  
+    game_path = os.path.join(script_dir, "data_game", "dist, "snake.exe")  
     
     if os.path.exists(game_path):
         try:
