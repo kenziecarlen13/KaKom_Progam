@@ -5,7 +5,7 @@ a = Analysis(
     ['simulasi.py'],
     pathex=[],
     binaries=[],
-    datas=[('data_game/dist/snake.exe', 'data_game/dist')],
+    datas=[('data_game\\dist\\snake.exe', 'data_game\\dist')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

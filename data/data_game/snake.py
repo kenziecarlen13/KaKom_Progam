@@ -10,6 +10,7 @@ WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 BLACK = (0, 0, 0)
+BLUE = (0, 0, 255)
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Ular Memakan Apel")
@@ -23,6 +24,50 @@ def get_random_apple(snake):
         if apple not in snake:
             return apple
 
+def draw_button(text, x, y, w, h, color):
+    """Menggambar tombol dan mengembalikan True jika ditekan."""
+    mouse = pygame.mouse.get_pos()
+    click = pygame.mouse.get_pressed()
+
+    pygame.draw.rect(screen, color, (x, y, w, h))
+    font = pygame.font.Font(None, 30)
+    label = font.render(text, True, WHITE)
+    screen.blit(label, (x + 10, y + 10))
+
+    if x < mouse[0] < x + w and y < mouse[1] < y + h:
+        if click[0] == 1:
+            pygame.time.delay(200)  # Hindari double-click cepat
+            return True
+    return False
+
+def login_screen():
+    """Tampilan login sebelum game dimulai."""
+    logged_in = False
+    paid = False
+
+    while not (logged_in and paid):
+        screen.fill(BLACK)
+        font = pygame.font.Font(None, 40)
+
+        if not logged_in:
+            text = font.render("Login dengan akun Google", True, WHITE)
+            screen.blit(text, (WIDTH // 6, HEIGHT // 4))
+            if draw_button("Login", WIDTH // 3, HEIGHT // 3, 150, 50, BLUE):
+                logged_in = True  # Perbarui status login
+
+        elif not paid:
+            text = font.render("Bayar untuk bermain", True, WHITE)
+            screen.blit(text, (WIDTH // 4, HEIGHT // 4))
+            if draw_button("Pay", WIDTH // 3, HEIGHT // 3, 150, 50, GREEN):
+                paid = True  # Perbarui status pembayaran
+
+        pygame.display.flip()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+
 def run_game():
     snake = [(100, 100)]
     direction = (GRID_SIZE, 0)
@@ -35,7 +80,7 @@ def run_game():
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return False  # Keluar dari game
+                return False
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP and direction != (0, GRID_SIZE):
                     direction = (0, -GRID_SIZE)
@@ -48,13 +93,12 @@ def run_game():
 
         new_head = (snake[0][0] + direction[0], snake[0][1] + direction[1])
 
-        # Cek tabrakan dengan dinding atau tubuh sendiri
+        # Cek tabrakan
         if new_head[0] < 0 or new_head[0] >= WIDTH or new_head[1] < 0 or new_head[1] >= HEIGHT or new_head in snake:
             return show_game_over(score)
 
         snake.insert(0, new_head)
         
-        # Jika makan apel
         if new_head == apple:
             apple = get_random_apple(snake)
             score += 1
@@ -66,18 +110,17 @@ def run_game():
             pygame.draw.rect(screen, GREEN, (segment[0], segment[1], GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, RED, (apple[0], apple[1], GRID_SIZE, GRID_SIZE))
         
-        # Tampilkan skor di layar
+        # Tampilkan skor
         font = pygame.font.Font(None, 30)
         score_text = font.render(f"Skor: {score}", True, WHITE)
         screen.blit(score_text, (10, 10))
         
         pygame.display.flip()
         
-        # Percepat permainan seiring skor meningkat
         clock.tick(9 + score // 5)
 
 def show_game_over(score):
-    """Menampilkan layar game over dan memberikan opsi restart atau keluar."""
+    """Tampilkan layar game over."""
     screen.fill(BLACK)
     font = pygame.font.Font(None, 50)
     
@@ -93,18 +136,18 @@ def show_game_over(score):
 
     pygame.display.flip()
 
-    # Tunggu input dari pemain
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return False
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
-                    return True  # Restart game
+                    return True
                 elif event.key == pygame.K_q:
-                    return False  # Keluar dari game
+                    return False
 
 # Main Loop
+login_screen()  # Tampilkan layar login sebelum memulai permainan
 while True:
     if not run_game():
         break
