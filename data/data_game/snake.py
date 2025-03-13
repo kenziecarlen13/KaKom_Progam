@@ -58,7 +58,7 @@ def login_screen():
         elif not paid:
             text = font.render("Bayar untuk bermain", True, WHITE)
             screen.blit(text, (WIDTH // 4, HEIGHT // 4))
-            if draw_button("Pay", WIDTH // 3, HEIGHT // 3, 150, 50, GREEN):
+            if draw_button("Play", WIDTH // 3, HEIGHT // 3, 150, 50, GREEN):
                 paid = True  # Perbarui status pembayaran
 
         pygame.display.flip()
