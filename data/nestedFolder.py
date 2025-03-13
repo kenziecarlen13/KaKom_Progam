@@ -4,42 +4,7 @@ def create_nested_folders(base_path, count=0):
     lorem_text = """Lorem, ipsum dolor sit amet consectetur adipisicing 
     elit. Sit ducimus doloremque repellat temporibus quibusdam culpa,ut 
     asperiores illo consectetur optio nisi facilis ex ratione. Commodi
-    minima autem officia quas obcaecati!
-    
-    Lorem, ipsum dolor sit amet consectetur adipisicing 
-    elit. Sit ducimus doloremque repellat temporibus quibusdam culpa,ut 
-    asperiores illo consectetur optio nisi facilis ex ratione. Commodi
-    minima autem officia quas obcaecati!
-    
-    Lorem, ipsum dolor sit amet consectetur adipisicing 
-    elit. Sit ducimus doloremque repellat temporibus quibusdam culpa,ut 
-    asperiores illo consectetur optio nisi facilis ex ratione. Commodi
-    minima autem officia quas obcaecati!
-    
-    Lorem, ipsum dolor sit amet consectetur adipisicing 
-    elit. Sit ducimus doloremque repellat temporibus quibusdam culpa,ut 
-    asperiores illo consectetur optio nisi facilis ex ratione. Commodi
-    minima autem officia quas obcaecati!
-    
-    Lorem, ipsum dolor sit amet consectetur adipisicing 
-    elit. Sit ducimus doloremque repellat temporibus quibusdam culpa,ut 
-    asperiores illo consectetur optio nisi facilis ex ratione. Commodi
-    minima autem officia quas obcaecati!
-    
-    Lorem, ipsum dolor sit amet consectetur adipisicing 
-    elit. Sit ducimus doloremque repellat temporibus quibusdam culpa,ut 
-    asperiores illo consectetur optio nisi facilis ex ratione. Commodi
-    minima autem officia quas obcaecati!
-    
-    Lorem, ipsum dolor sit amet consectetur adipisicing 
-    elit. Sit ducimus doloremque repellat temporibus quibusdam culpa,ut 
-    asperiores illo consectetur optio nisi facilis ex ratione. Commodi
-    minima autem officia quas obcaecati!
-    
-    Lorem, ipsum dolor sit amet consectetur adipisicing 
-    elit. Sit ducimus doloremque repellat temporibus quibusdam culpa,ut 
-    asperiores illo consectetur optio nisi facilis ex ratione. Commodi
-    minima autem officia quas obcaecati!""" * 10
+    minima autem officia quas obcaecati!""" * 100
     
     existing_folders = [f for f in os.listdir(base_path) if f.startswith("System_") and f[7:].isdigit()]
     existing_numbers = sorted([int(f[7:]) for f in existing_folders])
